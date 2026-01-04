@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حاسبة الليرة السورية الجديدة والقديمة</title>
+  <meta name="description" content="تحويل سريع بين الليرة السورية القديمة والجديدة + شرح مبسط وأسئلة شائعة" />
+  <style>
+    :root{--bg:#0b0f19;--card:#111827;--text:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--line:rgba(255,255,255,.10)}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#0b0f19,#05070c);color:var(--text)}
+    .wrap{max-width:980px;margin:0 auto;padding:22px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.2px}
+    .pill{background:rgba(255,255,255,.06);border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted);font-size:13px}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}
+    .card{background:rgba(17,24,39,.72);border:1px solid var(--line);border-radius:16px;padding:16px;backdrop-filter: blur(8px)}
+    h1{margin:0 0 8px;font-size:28px}
+    h2{margin:0 0 8px;font-size:18px}
+    p{margin:0 0 10px;color:var(--muted);line-height:1.75}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label{font-size:13px;color:var(--muted)}
+    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.20);color:var(--text);outline:none}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    button{border:none;border-radius:12px;padding:12px 14px;font-weight:800;cursor:pointer}
+    .primary{background:var(--accent);color:#06210f}
+    .ghost{background:rgba(255,255,255,.07);color:var(--text);border:1px solid var(--line)}
+    .result{margin-top:10px;padding:12px;border-radius:12px;border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.03)}
+    .big{font-size:18px;font-weight:900}
+    .small{font-size:13px;color:var(--muted)}
+    details{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+    summary{cursor:pointer;font-weight:800}
+    .footer{margin:16px 0 0;text-align:center;color:var(--muted);font-size:12px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">حاسبة الليرة السورية الجديدة والقديمة</div>
+      <div class="pill">قاعدة التحويل: 1 جديدة = 100 قديمة</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h1>حوّل خلال ثواني</h1>
+        <p>
+          الهدف: مساعدة الناس تفهم الأسعار والرواتب بين “الليرة القديمة” و“الليرة الجديدة”.
+          (شطب صفرين: كل 100 قديمة = 1 جديدة)
+        </p>
+
+        <div class="row">
+          <div>
+            <label for="amount">المبلغ</label>
+            <input id="amount" inputmode="decimal" placeholder="مثال: 250000" />
+          </div>
+          <div>
+            <label for="mode">التحويل</label>
+            <select id="mode">
+              <option value="old_to_new">قديمة → جديدة</option>
+              <option value="new_to_old">جديدة → قديمة</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="btns">
+          <button class="primary" onclick="convert()">تحويل</button>
+          <button class="ghost" onclick="swap()">بدّل الاتجاه</button>
+          <button class="ghost" onclick="resetAll()">مسح</button>
+        </div>
+
+        <div class="result" id="out">
+          <div class="big">النتيجة تظهر هون</div>
+          <div class="small">ملاحظة: الأرقام للتبسيط، واستعمل فواصل عند الحاجة.</div>
+        </div>
+
+        <details>
+          <summary>أمثلة سريعة</summary>
+          <p class="small" style="margin-top:8px">
+            • 100,000 قديمة = 1,000 جديدة<br/>
+            • 50,000 قديمة = 500 جديدة<br/>
+            • 1,250 جديدة = 125,000 قديمة
+          </p>
+        </details>
+      </div>
+
+      <div class="card">
+        <h2>شرح مبسّط</h2>
+        <p>
+          “شطب صفرين” يعني تغيير طريقة كتابة الأسعار لتصير أبسط، بدون ما يعني تلقائيًا تحسّن فوري بالقيمة الشرائية.
+        </p>
+
+        <details open>
+          <summary>أسئلة شائعة</summary>
+          <p class="small" style="margin-top:8px">
+            <b>هل لازم أبدّل كل مصرياتي فورًا؟</b><br/>
+            هذا بيرجع للتعليمات الرسمية وفترة الانتقال. كثير من التقارير ذكرت فترة تعايش مؤقتة بين العملتين.<br/><br/>
+            <b>ليش في ناس بتقول “قديمة” و“جديدة”؟</b><br/>
+            لأن في عملة جديدة بوحدات أصغر (شطب صفرين)، فصار في ضرورة لتوضيح أي وحدة عم نحكي عنها.
+          </p>
+        </details>
+
+        <details>
+          <summary>تنبيه مهم</summary>
+          <p class="small" style="margin-top:8px">
+            لا تعتمد على الموقع لاتخاذ قرارات مالية كبيرة. استخدمه للتوضيح فقط، وتحقق دائمًا من تعميمات المصرف المركزي.
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2>إضافة مفيدة (اختياري)</h2>
+      <p class="small">
+        إذا بدك، بخلي الموقع يدعم:
+        • عربي/إنكليزي • صفحة “صور الفئات” • صفحة “آخر التعميمات” • زر مشاركة على واتساب
+      </p>
+    </div>
+
+    <div class="footer">© <span id="y"></span> — نسخة تجريبية</div>
+  </div>
+
+<script>
+  const RATE = 100; // 1 new = 100 old
+
+  function fmt(n){
+    try { return new Intl.NumberFormat('ar-SY', { maximumFractionDigits: 2 }).format(n); }
+    catch { return String(n); }
+  }
+
+  function parseNumber(v){
+    // يقبل أرقام مع فواصل ومسافات
+    const cleaned = (v || "").toString().replace(/[,\s]/g,'');
+    if(!cleaned) return null;
+    const n = Number(cleaned);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function convert(){
+    const amount = parseNumber(document.getElementById('amount').value);
+    const mode = document.getElementById('mode').value;
+    const out = document.getElementById('out');
+
+    if(amount === null){
+      out.innerHTML = `<div class="big">حط رقم صحيح</div><div class="small">مثال: 250000</div>`;
+      return;
+    }
+
+    let res, line;
+    if(mode === 'old_to_new'){
+      res = amount / RATE;
+      line = `${fmt(amount)} ل.س قديمة = <b>${fmt(res)}</b> ل.س جديدة`;
+    } else {
+      res = amount * RATE;
+      line = `${fmt(amount)} ل.س جديدة = <b>${fmt(res)}</b> ل.س قديمة`;
+    }
+
+    out.innerHTML = `<div class="big">${line}</div>
+      <div class="small">قاعدة التحويل: 1 جديدة = 100 قديمة</div>`;
+  }
+
+  function swap(){
+    const m = document.getElementById('mode');
+    m.value = (m.value === 'old_to_new') ? 'new_to_old' : 'old_to_new';
+    convert();
+  }
+
+  function resetAll(){
+    document.getElementById('amount').value = '';
+    document.getElementById('mode').value = 'old_to_new';
+    document.getElementById('out').innerHTML = `<div class="big">النتيجة تظهر هون</div><div class="small">ملاحظة: الأرقام للتبسيط.</div>`;
+  }
+
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
